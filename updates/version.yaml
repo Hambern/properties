@@ -1,0 +1,6 @@
+1.0.1: First version of Properties
+1.0.2:
+    - Create database table
+    - create_options_table.php
+    - create_product_property_table.php
+    - create_properties_table.php

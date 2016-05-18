@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: hambern.properties::lang.property.label
+
+# Model Form Field configuration
+form: $/hambern/properties/models/property/fields.yaml
+
+# Model Class name
+modelClass: Hambern\Properties\Models\Property
+
+# Default redirect location
+defaultRedirect: hambern/properties/properties
+
+# Create page
+create:
+    title: hambern.properties::lang.property.create_title
+    redirect: hambern/properties/properties/update/:id
+    redirectClose: hambern/properties/properties
+
+# Update page
+update:
+    title: hambern.properties::lang.property.update_title
+    redirect: hambern/properties/properties
+    redirectClose: hambern/properties/properties
+
+# Preview page
+preview:
+    title: hambern.properties::lang.property.preview_title

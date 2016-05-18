@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: hambern.properties::lang.option.label
+
+# Model Form Field configuration
+form: $/hambern/properties/models/option/fields.yaml
+
+# Model Class name
+modelClass: Hambern\Properties\Models\Option
+
+# Default redirect location
+defaultRedirect: hambern/properties/options
+
+# Create page
+create:
+    title: hambern.properties::lang.option.create_title
+    redirect: hambern/properties/options/update/:id
+    redirectClose: hambern/properties/options
+
+# Update page
+update:
+    title: hambern.properties::lang.option.update_title
+    redirect: hambern/properties/options
+    redirectClose: hambern/properties/options
+
+# Preview page
+preview:
+    title: hambern.properties::lang.option.preview_title

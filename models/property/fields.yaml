@@ -1,0 +1,24 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: auto
+    title:
+        label: 'hambern.properties::lang.labels.title'
+        type: text
+        span: auto
+    placeholder:
+        label: 'hambern.properties::lang.labels.placeholder'
+        type: text
+        span: auto
+    type:
+        label: 'hambern.properties::lang.labels.type'
+        type: dropdown
+        span: auto
+    options:
+        type: partial
+        path: $/hambern/properties/partials/relations/options.htm

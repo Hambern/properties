@@ -1,0 +1,13 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+options:
+    label: hambern.properties::lang.option.label
+    manage:
+        form: $/hambern/properties/models/option/fields.yaml
+        list: $/hambern/properties/models/option/columns.yaml
+    view:
+        list: $/hambern/properties/models/option/columns.yaml
+        toolbarButtons: create|delete
+        showSearch: true
