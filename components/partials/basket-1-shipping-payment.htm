@@ -4,8 +4,8 @@
         <strong>2 Shipping & Payment</strong><span class="glyphicon glyphicon-chevron-right"></span>
         <span>3 Address</span><span class="glyphicon glyphicon-chevron-right"></span>
         <span>4 Summary</span>
-    </div>    
-    
+    </div>
+
 {{ form_ajax('onRunBasketAddress') }}
     {% if (basket.products|length == 0) %}
         <div>
@@ -15,7 +15,7 @@
     <div class="row basket-shipping-payment-wrapper">
         <div class="col-sm-6 basket-shipping-wrapper">
             <h2>Select Shipping Option</h2>
-            <select name="shipping_id">
+            <select name="shipping_id" class="form-control">
                 {% for shipping in basket.shipping_options  %}
                 <option value="{{ shipping.id }}">
                     {{ shipping.title }} - {{ jkshopSetting.getPriceFormatted(shipping.getCurrentPriceWithTax(basket)) }}
@@ -25,8 +25,13 @@
         </div>
         <div class="col-sm-6 basket-payment-wrapper">
             <h2>Select Payment Option</h2>
-            {{ form_select("payment_method_id", basket.payment_method_options, basket.payment_method_id) }}
-            
+            <select name="payment_method_id" class="form-control">
+              {% for id, payment in basket.payment_method_options  %}
+              <option value="{{ id }}"{% if id == basket.payment_method_id %} selected{% endif %}>
+                  {{ payment }}
+              </option>
+              {% endfor %}
+            </select>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -37,5 +42,5 @@
     </div>
 
     {% endif %}
-</form>    
+</form>
 </div>
