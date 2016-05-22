@@ -19,7 +19,6 @@ class Property extends Model
       return [
         'select' => 'hambern.properties::lang.types.select',
         'buttongroup' => 'hambern.properties::lang.types.buttongroup',
-        'checkboxlist' => 'hambern.properties::lang.types.checkboxlist',
         'text' => 'hambern.properties::lang.types.text',
         'textarea' => 'hambern.properties::lang.types.textarea',
         'number' => 'hambern.properties::lang.types.number',

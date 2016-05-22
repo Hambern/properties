@@ -37,6 +37,11 @@ class Plugin extends PluginBase
   {
     Event::listen('backend.menu.extendItems', function($manager)
     {
+      $manager->addMainMenuItems('Jiri.JKShop', [
+        'jkshop' => [
+          'url' => Backend::url('hambern/properties/orders'),
+        ]
+      ]);
       $manager->addSideMenuItems('Jiri.JKShop', 'jkshop', [
         'properties' => [
           'label'       => 'hambern.properties::lang.properties.menu_label',
@@ -44,10 +49,21 @@ class Plugin extends PluginBase
           'code'        => 'properties',
           'owner'       => 'Jiri.JKShop',
           'url'         => Backend::url('hambern/properties/properties')
-        ],
+        ]
       ]);
-
+      $manager->addSideMenuItems('Jiri.JKShop', 'jkshop', [
+        'orders' => [
+          'url'         => Backend::url('hambern/properties/orders')
+        ]
+      ]);
     });
+  }
+
+  public function registerComponents() {
+    return [
+      'Hambern\Properties\Components\ProductDetail' => 'myProductDetail',
+      'Hambern\Properties\Components\Basket' => 'myBasket',
+    ];
   }
 
   public function extendModel()

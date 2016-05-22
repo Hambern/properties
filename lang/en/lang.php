@@ -45,7 +45,6 @@ return [
     'types' => [
         'select' => 'Select',
         'buttongroup' => 'Button group',
-        'checkboxlist' => 'Checkbox list',
         'text' => 'Text field',
         'textarea' => 'Textarea field',
         'number' => 'Number field',

@@ -1,0 +1,61 @@
+<div class="basket-content-wrapper" id="basket-content-wrapper">
+    <div class="basket-breadcrumbs">
+        <strong>1 Cart</strong><span class="glyphicon glyphicon-chevron-right"></span>
+        <span>2 Shipping & Payment</span><span class="glyphicon glyphicon-chevron-right"></span>
+        <span>3 Address </span><span class="glyphicon glyphicon-chevron-right"></span>
+        <span>4 Summary</span>
+    </div>
+
+    {% if (basket.products|length == 0) %}
+        <div>
+            Cart is empty
+        </div>
+    {% else %}
+    <div class="basket-product-row-wrapper">
+        {% for md5, productJson in basket.products  %}
+        <div class="row basket-product-row">
+            <div class="col-sm-6 basket-product-row-info">
+                {% if productJson.product.images|length > 0 %}
+                <img src="{{ productJson.product.images[0].thumb(55,55) }}" class="cursor-pointer" onclick="location.href = '{{ productJson.product.url}}'" >
+                {% endif %}
+                &nbsp;&nbsp;
+                <a class="cursor-pointer" onclick="location.href = '{{ productJson.product.url}}'">{{ productJson.product.title }}</a>
+                {% for option in productJson.options %}, {{ option }}{% endfor %}
+            </div>
+            <div class="col-sm-2 basket-product-row-qty">
+                <strong>{{ productJson.basket_quantity }} &nbsp;</strong>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-request-data="md5: '{{ md5 }}', id: {{ productJson.product.id }}, qty_operation: -1" data-request="onBasketProductChangeQunatity"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default" data-request-data="md5: '{{ md5 }}', id: {{ productJson.product.id }}, qty_operation: 1" data-request="onBasketProductChangeQunatity"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <div class="col-sm-4 basket-product-row-price">
+                {{ jkshopSetting.getPriceFormatted(productJson.product.getFinalPrice) }}/ pc
+                &nbsp;&nbsp;
+                <strong>{{ jkshopSetting.getPriceFormatted(productJson.product.getFinalPrice * productJson.basket_quantity)  }}</strong>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-danger" data-request-data="md5: '{{ md5 }}', id: {{ productJson.product.id }}, qty_operation: -999999" data-request="onBasketProductChangeQunatity"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+        </div>
+        {% endfor  %}
+    </div>
+    <div class="basket-products-total">
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-9">Total excl. VAT</div>
+            <div class="col-sm-1">{{ basket.total_price_without_tax_formatted }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-9">VAT</div>
+            <div class="col-sm-1">{{ basket.total_tax_formatted }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-9">Total incl. VAT</div>
+            <div class="col-sm-1">{{ basket.total_price_formatted }}</div>
+        </div>
+    </div>
+    <div class="basket-products-buttons">
+        <button class="btn btn-primary" data-request="onRunBasketShippingPayment">Continue <span class="glyphicon glyphicon-chevron-right"></span></button>
+    </div>
+
+    {% endif %}
+</div>

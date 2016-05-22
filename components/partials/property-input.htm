@@ -1,0 +1,11 @@
+{% if property.type == 'select' %}
+    <select name="options[{{ property.title|lower }}]" class="form-control" placeholder="{{ property.placeholder }}">
+      {% for option in property.options %}
+        <option value="{{ option.title }}">{{ option.title }}</option>
+      {% endfor %}
+    </select>
+{% elseif property.type == 'text' %}
+    <input name="options[{{ property.title|lower }}]" type="text" class="form-control" placeholder="{{ property.placeholder }}">
+{% elseif property.type == 'number' %}
+    <input name="options[{{ property.title|lower }}]" type="number" class="form-control" placeholder="{{ property.placeholder }}">
+{% endif %}
