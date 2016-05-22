@@ -53,7 +53,7 @@ class Plugin extends PluginBase
       ]);
       $manager->addSideMenuItems('Jiri.JKShop', 'jkshop', [
         'orders' => [
-          'url'         => Backend::url('hambern/properties/orders')
+          'url' => Backend::url('hambern/properties/orders')
         ]
       ]);
     });

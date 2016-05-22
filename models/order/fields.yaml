@@ -40,9 +40,8 @@ tabs:
                         options: getProductOptions
 
                     options:
-                        label: Options
+                        label: hambern.properties::lang.options.menu_label
                         type: text
-                        valueFrom: json_encode(options)
 
                     quantity:
                         label: jiri.jkshop::lang.orders.quantity

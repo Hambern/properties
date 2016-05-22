@@ -12,19 +12,19 @@ form: $/hambern/properties/models/order/fields.yaml
 modelClass: Hambern\Properties\Models\Order
 
 # Default redirect location
-defaultRedirect: jiri/jkshop/orders
+defaultRedirect: hambern/properties/orders
 
 # Create page
 create:
     title: jiri.jkshop::lang.orders.create_order
-    redirect: jiri/jkshop/orders/update/:id
-    redirectClose: jiri/jkshop/orders
+    redirect: hambern/properties/orders/update/:id
+    redirectClose: hambern/properties/orders
 
 # Update page
 update:
     title: jiri.jkshop::lang.orders.edit_order
-    redirect: jiri/jkshop/orders
-    redirectClose: jiri/jkshop/orders
+    redirect: hambern/properties/orders
+    redirectClose: hambern/properties/orders
 
 # Preview page
 preview:

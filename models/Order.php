@@ -90,7 +90,7 @@ class Order extends BaseClass
             $products_json[] = [
                 "product_id" => $productJson["product_id"],
                 "quantity" => $productJson["basket_quantity"],
-                "options" => $productJson["options"],
+                "options" => http_build_query($productJson["options"], '', ', '),
                 "total_price_without_tax" => $productJson["total_price_without_tax"],
                 "total_tax" => $productJson["total_tax"],
                 "total_price" => $productJson["total_price"],
