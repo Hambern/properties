@@ -214,4 +214,47 @@ class Basket extends BaseClass
       $this->property("idElementTotalCartPrice") => $basket["total_price_formatted"]
     ];
   }
+
+  /**
+   * +-1 Quantity on basket product
+   *
+   * @return type
+   */
+  public function onBasketProductChangeQunatity() {
+      $basket = $this->getSessionBasket();
+      $id = input('id');
+      $md5 = input('md5');
+      $qtyOperation = input('qty_operation');
+
+      $product = \Jiri\JKShop\Models\Product::find($id);
+
+      if ($product->minimum_quantity > 1) {
+          $qtyOperation = $qtyOperation * $product->minimum_quantity;
+      }
+
+      if (array_key_exists($md5, $basket["products"])) {
+          if ($qtyOperation > 0) {
+              // plus
+              $basket["products"][$md5]["basket_quantity"] += $qtyOperation;
+          }
+          else {
+              // minus
+              $basket["products"][$md5]["basket_quantity"] += $qtyOperation;
+              if ($basket["products"][$md5]["basket_quantity"] <= 0) {
+                  unset($basket["products"][$md5]);
+              }
+          }
+      }
+      $basket = $this->setSessionBasket($basket);
+
+      $data = array();
+      $data["basket"] = $basket;
+      $data["jkshopSetting"] = \Jiri\JKShop\Models\Settings::instance();
+
+      return [
+          $this->property("idElementWrapperBasketComponent") => $this->renderPartial('@basket-0', $data),
+          $this->property("idElementTotalCartPrice") => $basket["total_price_formatted"]
+      ];
+
+  }
 }
