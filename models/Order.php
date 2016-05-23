@@ -87,10 +87,14 @@ class Order extends BaseClass
             // i call this immediately get basket and this method check stock availability
 
             // $basket["products"][$id]["product"]
+            $options = is_array($productJson["options"])
+              ? http_build_query($productJson["options"], '', ', ')
+              : '';
+
             $products_json[] = [
                 "product_id" => $productJson["product_id"],
                 "quantity" => $productJson["basket_quantity"],
-                "options" => http_build_query($productJson["options"], '', ', '),
+                "options" => $options,
                 "total_price_without_tax" => $productJson["total_price_without_tax"],
                 "total_tax" => $productJson["total_tax"],
                 "total_price" => $productJson["total_price"],

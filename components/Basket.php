@@ -158,8 +158,17 @@ class Basket extends BaseClass
       Session::forget('jkshop-basket');
 
       // response tanks or redirect on paypal
+      $information = [];
+      foreach ($order->products_json as $product) {
+        $prod = Product::find($product['product_id']);
+        $information[] =
+          $product['quantity'].' pc #'.$product['product_id'].' '.
+          $prod->title.' '.
+          $product['options'];
+      }
       $data = [
           "order" => $order,
+          "information" => implode('. ', $information),
           "jkshopSetting" => $jkshopSetting
       ];
       switch ($order->payment_method) {
@@ -205,9 +214,7 @@ class Basket extends BaseClass
           "options" => input('options')
         ];
       }
-      \Debugbar::info($basket);
       $basket = $this->setSessionBasket($basket);
-      \Debugbar::info($basket);
     }
 
     return [
